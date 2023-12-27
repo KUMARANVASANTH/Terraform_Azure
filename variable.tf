@@ -8,7 +8,7 @@ variable "location-2" {
   type        = string
 }
 variable "location-3" {
-  description = "The location of the resource-3"
+  description = "The location of the vhub"
   type        = string
 }
 # variable "databricks_sku" {

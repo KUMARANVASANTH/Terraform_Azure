@@ -31,6 +31,24 @@ resource "azurerm_virtual_network" "vhub-vnet" {
 resource "azurerm_subnet" "vhub-subnet" {
   name                 = "vhub-subnet"
   resource_group_name  = azurerm_resource_group.vhub.name
-  virtual_network_name = azurerm_resource_group.vhub.name
+  virtual_network_name = azurerm_virtual_network.vhub-vnet.name
   address_prefixes     = ["10.14.1.0/24"]
+}
+resource "azurerm_subnet" "Gatewaysubnet-1" {
+  name = "gatewaySubnet-1"
+  virtual_network_name = azurerm_virtual_network.VNET-1.name
+  resource_group_name = azurerm_resource_group.resource-group-1.name
+  address_prefixes = [ "10.12.0.0/24" ]
+}
+resource "azurerm_subnet" "Gatewaysubnet-2" {
+  name = "gatewaySubnet-2"
+  virtual_network_name = azurerm_virtual_network.VNET-2.name
+  resource_group_name = azurerm_resource_group.resource-group-2.name
+  address_prefixes = [ "10.13.0.0/24" ]
+}
+resource "azurerm_subnet" "Gatewaysubnet-vhub" {
+  name = "gatewaySubnet-vhub"
+  virtual_network_name = azurerm_virtual_network.vhub-vnet.name
+  resource_group_name = azurerm_resource_group.vhub.name
+  address_prefixes = [ "10.14.0.0/24" ]
 }
